@@ -13,14 +13,14 @@ sharingLinks: false
 
 My academic journey started with economics, but curiosity led me to explore the technical side of things.
 
-{{< icon "code" >}}I started coding during COVID, and I never stopped since then.
+{{< icon "code" >}}I started coding during COVID lockdown, and I never stopped since then.
 
 This exploration has not only broadened my understanding but also shaped my career path in unexpected ways. Coding has become a significant part of my life, with Python being my go-to language, although I occasionally venture into TypeScript and Rust for specific projects.
 
 
 My professional experience includes working with Docker and Kubernetes, focusing on deploying applications efficiently. Recently, I've been delving into the potential of Large Language Models (LLM) for extracting data from raw text documents. This work has been both challenging and rewarding, pushing me to continuously learn and adapt. I enjoy the process of exploring new technologies and ideas, always looking for ways to improve and innovate.
 
-If you would like a newer unredacted version of my resume or have an interesting project or opportunity you would like to share, please don't hesitate to reach out via [email](mailto:alanctanner.com) or [linkedIn](https://www.linkedin.com/in/alanctanner/).
+If you would like a newer unredacted version of my resume or have an interesting project or opportunity you would like to share, please don't hesitate to reach out via [email](mailto:jouhameau.romain@gmail.com) or [linkedIn](https://www.linkedin.com/in/jouhameau-romain-87064618b/).
 
 ## Experience
 
@@ -50,13 +50,6 @@ If you would like a newer unredacted version of my resume or have an interesting
             <td>2021 - 2022</td>
             <td>Paris</td>
         </tr>
-        <tr>
-            <td ><img class="customEntitityLogo" src="crayon.png"/></td>
-            <td><a href="https://www.crayon.com/us/" target="_blank">Crayon Software Experts, LLC</a></td>
-            <td>Senior Technical Support Engineer</td>
-            <td>2022 - 2023</td>
-            <td>Dallas, Texas</td>
-        </tr>
     </tbody>
 </table>
 
@@ -77,6 +70,13 @@ If you would like a newer unredacted version of my resume or have an interesting
         </tr>
     </thead>
     <tbody>
+        <tr>
+            <td ><img class="customEntitityLogo" src="ipssi.png"/></td>
+          <td><a href="https://ecole-ipssi.com/" target="_blank">IPSSI</a></td>
+            <td>Master Dev, Data, IA</td>
+            <td>2022 - 2023</td>
+            <td>Paris</td>
+        </tr>
         <tr>
             <td ><img class="customEntitityLogo" src="p1.png"/></td>
           <td><a href="https://www.pantheonsorbonne.fr/" target="_blank">Paris 1 - Panthéon-Sorbonne</a></td>
@@ -100,7 +100,7 @@ If you would like a newer unredacted version of my resume or have an interesting
 
 | Certification         | Provider                           | Year                 |
 | --------------- | ------------------------------ | --------------------- |
-| Azure Something | Azure | 2021      |
+| Azure Data Fundamentals | Azure | 2021      |
 |                 |                                |                       |
 
 
