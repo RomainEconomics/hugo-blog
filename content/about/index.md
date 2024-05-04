@@ -73,7 +73,7 @@ If you would like a newer unredacted version of my resume or have an interesting
         <tr>
             <td ><img class="customEntitityLogo" src="ipssi.png"/></td>
           <td><a href="https://ecole-ipssi.com/" target="_blank">IPSSI</a></td>
-            <td>Master Dev, Data, IA</td>
+            <td>M2 Dev, Data, IA</td>
             <td>2022 - 2023</td>
             <td>Paris</td>
         </tr>
