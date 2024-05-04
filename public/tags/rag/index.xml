@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Rag on Romain Jouhameau</title>
+    <link>http://localhost:1313/tags/rag/</link>
+    <description>Recent content in Rag on Romain Jouhameau</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2024 Romain Jouhameau</copyright>
+    <lastBuildDate>Sat, 15 Apr 2023 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/rag/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>RAG</title>
+      <link>http://localhost:1313/posts/rag/</link>
+      <pubDate>Sat, 15 Apr 2023 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/rag/</guid>
+      <description>Until now, trying to style an article, document, or blog post with Tailwind has been a tedious task that required a keen eye for typography and a lot of complex custom CSS.</description>
+      
+    </item>
+    
+    <item>
+      <title>RAG</title>
+      <link>http://localhost:1313/projects/rag/</link>
+      <pubDate>Sat, 15 Apr 2023 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/projects/rag/</guid>
+      <description>Build a RAG and use all tools and strategies available to improve performances</description>
+      
+    </item>
+    
+  </channel>
+</rss>

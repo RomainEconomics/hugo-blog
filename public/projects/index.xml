@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Projects on Romain Jouhameau</title>
+    <link>http://localhost:1313/projects/</link>
+    <description>Recent content in Projects on Romain Jouhameau</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2024 Romain Jouhameau</copyright>
+    <lastBuildDate>Sat, 15 Apr 2023 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/projects/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>RAG</title>
+      <link>http://localhost:1313/projects/rag/</link>
+      <pubDate>Sat, 15 Apr 2023 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/projects/rag/</guid>
+      <description>Build a RAG and use all tools and strategies available to improve performances</description>
+      
+    </item>
+    
+    <item>
+      <title>Another Project</title>
+      <link>http://localhost:1313/projects/another-project/</link>
+      <pubDate>Tue, 11 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/projects/another-project/</guid>
+      <description>My projects</description>
+      
+    </item>
+    
+  </channel>
+</rss>

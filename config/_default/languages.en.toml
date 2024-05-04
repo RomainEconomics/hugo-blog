@@ -1,0 +1,24 @@
+languageCode = "en"
+languageName = "English"
+weight = 1
+title = "Romain Jouhameau"
+
+[params]
+displayName = "EN"
+isoCode = "en"
+rtl = false
+dateFormat = "2 January 2006"
+description = "My Blog and notes website!"
+
+[author]
+name = "Romain Jouhameau"
+headline = "Data Engineer"
+# bio = "This blog serves as a platform for me to document my journey and share insights. It's a space for reflection, learning, and connecting with others who have similar interests."
+image = "img/me.png"
+links = [
+  { x-twitter = "https://twitter.com/burufugu" },
+  { github = "https://github.com/nunocoracao/blowfish" },
+  { email = "mailto:hello@your_domain.com" },
+  { gitlab = "https://gitlab.com/username" },
+  { linkedin = "https://linkedin.com/in/username" },
+]

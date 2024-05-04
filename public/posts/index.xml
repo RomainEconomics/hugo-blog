@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Posts on Romain Jouhameau</title>
+    <link>http://localhost:1313/posts/</link>
+    <description>Recent content in Posts on Romain Jouhameau</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>© 2024 Romain Jouhameau</copyright>
+    <lastBuildDate>Tue, 16 Apr 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>1 Billion Rows Challenge</title>
+      <link>http://localhost:1313/posts/1rbc/</link>
+      <pubDate>Tue, 16 Apr 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/1rbc/</guid>
+      <description>Some title # Until now, trying to style an article, document, or blog post with Tailwind has been a tedious task that required a keen eye for typography and a lot of complex custom CSS.</description>
+      
+    </item>
+    
+    <item>
+      <title>RAG</title>
+      <link>http://localhost:1313/posts/rag/</link>
+      <pubDate>Sat, 15 Apr 2023 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/rag/</guid>
+      <description>Until now, trying to style an article, document, or blog post with Tailwind has been a tedious task that required a keen eye for typography and a lot of complex custom CSS.</description>
+      
+    </item>
+    
+    <item>
+      <title>Installation</title>
+      <link>http://localhost:1313/posts/installation/</link>
+      <pubDate>Sun, 16 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/installation/</guid>
+      <description>Simply follow the standard Hugo Quick Start procedure to get up and running quickly.</description>
+      
+    </item>
+    
+  </channel>
+</rss>

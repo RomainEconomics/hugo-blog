@@ -1,0 +1,66 @@
+
+[[main]]
+name = "Posts"
+pageRef = "posts"
+weight = 15
+
+[[main]]
+name = "Projects"
+pageRef = "projects"
+weight = 15
+
+[[main]]
+name = "Notes"
+pageRef = "notes"
+weight = 15
+
+[[main]]
+name = "About"
+pageRef = "about"
+weight = 15
+
+[[main]]
+name = "Tags"
+pageRef = "tags"
+weight = 15
+
+
+#
+# [[main]]
+# name = "Examples"
+# weight = 20
+#
+# [[main]]
+# name = "Samples"
+# parent = "Examples"
+# pageRef = "samples"
+# weight = 16
+#
+# [[main]]
+# name = "Showcase"
+# parent = "Examples"
+# pageRef = "examples"
+# weight = 30
+#
+# [[main]]
+# name = "Recipes"
+# parent = "Examples"
+# pageRef = "guides"
+# weight = 40
+
+[[main]]
+identifier = "github"
+pre = "github"
+url = "https://github.com/nunocoracao/blowfish"
+weight = 400
+
+
+[[footer]]
+name = "Tags"
+pageRef = "tags"
+weight = 10
+
+[[footer]]
+name = "Authors"
+pageRef = "authors"
+weight = 20
