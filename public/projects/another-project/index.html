@@ -80,8 +80,10 @@
     <meta property="article:tag" content="Lead">
     <meta property="article:tag" content="Docs">
 
-  <meta name="twitter:card" content="summary"><meta name="twitter:title" content="Another Project">
-<meta name="twitter:description" content="All projects I&#39;ve worked on recently">
+  
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Another Project">
+  <meta name="twitter:description" content="All projects I&#39;ve worked on recently">
 
   
   <script type="application/ld+json">
@@ -125,7 +127,7 @@
   <link href="mailto:jouhameau.romain@gmail.com" rel="me" />
   
   
-  <link href="https://www.linkedin.com/in/jouhameau-romain-87064618b/" rel="me" />
+  <link href="https://www.linkedin.com/in/romain-jouhameau-87064618b/" rel="me" />
   
   
   
@@ -411,7 +413,7 @@
 
             
             
-  <a href="https://github.com/nunocoracao/blowfish"  target="_blank"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+  <a href="https://github.com/RomainEconomics"  target="_blank"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
     
     <span >
         
@@ -636,7 +638,7 @@
 
                     
   <li class="mt-1">
-    <a href="https://github.com/nunocoracao/blowfish"  target="_blank"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+    <a href="https://github.com/RomainEconomics"  target="_blank"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
         
         <div >
             
@@ -946,7 +948,7 @@
         h.each(function (i, e) {
           e = $(e);
           if (e.offset().top - $(window).height()/3 <= currentScroll) {
-            id = e.attr('id');
+            id = decodeURIComponent(e.attr('id'));
           }
         });
         var active = $toc.find('a.active');      
@@ -971,6 +973,7 @@
     }
   })();
 </script>
+
    </div>
       </div>
       
@@ -2192,7 +2195,7 @@ Finally, custom GitLab instance URL can be provided, as long as the <code>api/v4
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2024-04-16 00:00:00 &#43;0000 UTC">16 April 2024</time><span class="px-2 text-primary-500">&middot;</span><span>1762 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">9 mins</span>
+  <time datetime="2024-04-16 00:00:00 &#43;0000 UTC">16 April 2024</time><span class="px-2 text-primary-500">&middot;</span><span>15520 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">73 mins</span>
   
 
   
@@ -2673,14 +2676,14 @@ B-->C[Profit]
 </span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">timelineItem</span> <span class="p">&gt;</span>}}
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">{{<span class="p">&lt;</span> <span class="p">/</span><span class="nt">timeline</span> <span class="p">&gt;</span>}}
-</span></span></code></pre></div><ol class="border-l-2 list-none border-primary-500 dark:border-primary-300">
+</span></span></code></pre></div><ol class="border-l-2 border-primary-500 dark:border-primary-300">
 
 
 
 
 
 
-<li class="list-none">
+<li>
   <div class="flex flex-start">
     <div class="bg-primary-500 dark:bg-primary-300 text-neutral-50 dark:text-neutral-700 min-w-[30px] h-8 text-2xl flex items-center justify-center rounded-full -ml-12 mt-5">
       
@@ -2714,9 +2717,9 @@ B-->C[Profit]
         subheader
       </h4>
       
-      <p class="text-gray-700 mb-6">
+      <div class="mb-6">
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus non magna ex. Donec sollicitudin ut lorem quis lobortis. Nam ac ipsum libero. Sed a ex eget ipsum tincidunt venenatis quis sed nisl. Pellentesque sed urna vel odio consequat tincidunt id ut purus. Nam sollicitudin est sed dui interdum rhoncus. 
-</p>
+</div>
     </div>
   </div>
 </li>
@@ -2728,7 +2731,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus non magna ex. D
 
 
 
-<li class="list-none">
+<li>
   <div class="flex flex-start">
     <div class="bg-primary-500 dark:bg-primary-300 text-neutral-50 dark:text-neutral-700 min-w-[30px] h-8 text-2xl flex items-center justify-center rounded-full -ml-12 mt-5">
       
@@ -2762,14 +2765,14 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus non magna ex. D
         Awesome Subheader
       </h4>
       
-      <p class="text-gray-700 mb-6">
+      <div class="mb-6">
 With html code
 <ul>
   <li>Coffee</li>
   <li>Tea</li>
   <li>Milk</li>
 </ul>
-</p>
+</div>
     </div>
   </div>
 </li>
@@ -2780,7 +2783,7 @@ With html code
 
 
 
-<li class="list-none">
+<li>
   <div class="flex flex-start">
     <div class="bg-primary-500 dark:bg-primary-300 text-neutral-50 dark:text-neutral-700 min-w-[30px] h-8 text-2xl flex items-center justify-center rounded-full -ml-12 mt-5">
       
@@ -2809,7 +2812,7 @@ With html code
         
       </div>
       
-      <p class="text-gray-700 mb-6">
+      <div class="mb-6">
 With other shortcodes
 
 
@@ -2824,7 +2827,7 @@ With other shortcodes
   <img src="gallery/07.jpg" class="grid-w33" />
 
 </div>
-</p>
+</div>
     </div>
   </div>
 </li>

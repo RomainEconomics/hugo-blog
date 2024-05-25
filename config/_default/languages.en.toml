@@ -12,11 +12,11 @@ description = "Blog"
 
 [author]
 name = "Romain Jouhameau"
-headline = "Data Engineer"
+headline = "Data Scientist"
 # bio = "This blog serves as a platform for me to document my journey and share insights. It's a space for reflection, learning, and connecting with others who have similar interests."
 image = "img/me.png"
 links = [
   { github = "https://github.com/RomainEconomics" },
   { email = "mailto:jouhameau.romain@gmail.com" },
-  { linkedin = "https://www.linkedin.com/in/jouhameau-romain-87064618b/" },
+  { linkedin = "https://www.linkedin.com/in/romain-jouhameau-87064618b/" },
 ]

@@ -8,194 +8,239 @@ subjects: ["python", "data-processing"]
 showTaxonomies: true
 ---
 
-# Some title
+# 1 Billion Rows Challenge
 
-Until now, trying to style an article, document, or blog post with Tailwind has been a tedious task that required a keen eye for typography and a lot of complex custom CSS.
+## Comparing Python and Rust for Processing Large Datasets
 
-By default, Tailwind removes all of the default browser styling from paragraphs, headings, lists and more. This ends up being really useful for building application UIs because you spend less time undoing user-agent styles, but when you _really are_ just trying to style some content that came from a rich-text editor in a CMS or a markdown file, it can be surprising and unintuitive.
+In this post, I will share my experience tackling the [1 Billion Rows Challenge](https://github.com/gunnarmorling/1brc). This consists in reading a dataset with 1 billion rows and 2 columns (city, temp) and computing the minimum, maximum, and mean temperaturefor each city. I approached this problem using both Python and Rust to compare their performance and capabilities. Below, I will walk you through the different strategies I employed for each language and the results of my benchmarks.
 
-We get lots of complaints about it actually, with people regularly asking us things like:
+Note that all the code and benchmarks are available in the github repo:
 
-> Why is Tailwind removing the default styles on my `h1` elements? How do I disable this? What do you mean I lose all the other base styles too?
-> We hear you, but we're not convinced that simply disabling our base styles is what you really want. You don't want to have to remove annoying margins every time you use a `p` element in a piece of your dashboard UI. And I doubt you really want your blog posts to use the user-agent styles either — you want them to look _awesome_, not awful.
+{{< github repo="RomainEconomics/1rbc" >}}
 
-The `@tailwindcss/typography` plugin is our attempt to give you what you _actually_ want, without any of the downsides of doing something stupid like disabling our base styles.
+To generate the file used for the computation, go the [1BRC repo](https://github.com/gunnarmorling/1brc).
 
-It adds a new `prose` class that you can slap on any block of vanilla HTML content and turn it into a beautiful, well-formatted document:
 
-```html
-<article class="prose">
-  <h1>Garlic bread with cheese: What the science tells us</h1>
-  <p>
-    For years parents have espoused the health benefits of eating garlic bread
-    with cheese to their children, with the food earning such an iconic status
-    in our culture that kids will often dress up as warm, cheesy loaf for
-    Halloween.
-  </p>
-  <p>
-    But a recent study shows that the celebrated appetizer may be linked to a
-    series of rabies cases springing up around the country.
-  </p>
-</article>
+## Benchmarks
+
+As a teaser, here the results of the benchmarks:
+
+
+| Strategy              | Language |   Mean | StdDev | Median |    Min |    Max |
+| :-------------------- | :------- | -----: | -----: | -----: | -----: | -----: |
+| v6_multi_threading_v1 | Rust     |   4.71 |   0.17 |   4.76 |   4.46 |   4.88 |
+| baseline_ibis_duckdb  | Python   |  11.25 |   0.52 |  11.34 |  10.71 |  11.82 |
+| baseline_polars       | Python   |  20.18 |  12.76 |  11.81 |  11.63 |  40.37 |
+| v5_mmap               | Rust     |  29.85 |   1.12 |  29.34 |  29.27 |  31.84 |
+| v5_pypy_mp_v2         | Python   |  34.77 |   9.42 |  32.78 |  24.41 |  46.29 |
+| v4_parse_temp         | Rust     |  39.34 |   0.13 |  39.28 |  39.24 |  39.56 |
+| v3_fast_float         | Rust     |  41.97 |   0.07 |  41.94 |  41.92 |  42.08 |
+| v4_pypy_mp            | Python   |  42.67 |   7.67 |  39.17 |  34.52 |  54.08 |
+| v2_faster_hash        | Rust     |  44.32 |   0.15 |  44.28 |  44.19 |   44.5 |
+| v1_bytes              | Rust     |  53.73 |   0.78 |  54.14 |   52.4 |   54.3 |
+| v0_buffer_reader      | Rust     |  77.43 |   5.76 |  75.23 |  74.19 |  87.68 |
+| v3_pypy_temp_parsing  | Python   |  96.24 |   0.55 |  96.32 |  95.52 |  96.81 |
+| v2_pypy_bytes         | Python   | 124.39 |   0.78 | 124.15 |  123.7 | 125.73 |
+| v1_pypy_list          | Python   | 181.59 |   0.37 | 181.74 | 181.09 |    182 |
+| v0_builtin_with_pypy  | Python   | 184.76 |   1.34 | 184.33 | 182.98 | 186.19 |
+| baseline_pandas       | Python   | 217.59 |   4.66 | 215.74 | 214.61 | 225.84 |
+| v0_builtin            | Python   | 703.82 |   12.6 | 699.51 | 695.57 | 725.97 |
+
+## Python Strategies
+
+### Baseline in Pure Python
+
+I started with a baseline implementation in pure Python. This approach was straightforward but not optimized for performance.
+
+```python
+import sys
+
+class TempStat:
+    def __init__(self, temp: float):
+        self.min_val = temp
+        self.max_val = temp
+        self.sum_val = temp
+        self.count = 1
+
+    def mean(self) -> float:
+        return self.sum_val / self.count
+
+    def update(self, temp: float):
+        self.min_val = min(self.min_val, temp)
+        self.max_val = max(self.max_val, temp)
+        self.sum_val += temp
+        self.count += 1
+
+
+if __name__ == "__main__":
+    file_path = sys.argv[1]
+
+    cities: dict[str, TempStat] = {}
+
+    with open(file_path, "r") as file:
+        for idx, line in enumerate(file):
+            city, temp = line.split(";")
+            if city in cities:
+                cities[city].update(float(temp))
+            else:
+                cities[city] = TempStat(float(temp))
 ```
 
-For more information about how to use the plugin and the features it includes, [read the documentation](https://github.com/tailwindcss/typography/blob/master/README.md).
+This code runs, but is very slow (more than 700 seconds).
 
----
+Several problems can be identified:
 
-## What to expect from here on out
+- It uses the python interpreter, which is not the most performant, as we will see.
+- We read each line as a string, instead of bytes, which is slower.
+- Each temperature is parsed to float
+- Only one thread, and one core is used
 
-What follows from here is just a bunch of absolute nonsense I've written to dogfood the plugin itself. It includes every sensible typographic element I could think of, like **bold text**, unordered lists, ordered lists, code blocks, block quotes, _and even italics_.
+We will try to improve on these points in the following sections.
 
-It's important to cover all of these use cases for a few reasons:
+But first, even if the goal is to use plain Python and Rust, as possible, it is interesting to compare our results to some more popular, and more optimized libraries.
 
-1.  We want everything to look good out of the box.
-2.  Really just the first reason, that's the whole point of the plugin.
-3.  Here's a third pretend reason though a list with three items looks more realistic than a list with two items.
+### Using Common Libraries
 
-Now we're going to try out another header style.
+Next, I leveraged some popular Python libraries known for their performance with large datasets:
 
-### Typography should be easy
+- Pandas: A powerful data manipulation library. The most used one in Python, but not the fastest.
+- Polars: A fast DataFrame library.
+- DuckDB: An in-process SQL OLAP database management system.
 
-So that's a header for you — with any luck if we've done our job correctly that will look pretty reasonable.
+As an example, the code for DuckDB (using Ibis as a wrapper around it):
 
-Something a wise person once told me about typography is:
+```python
+import sys
+import ibis
 
-> Typography is pretty important if you don't want your stuff to look like trash. Make it good then it won't be bad.
+if __name__ == "__main__":
+    file_path = sys.argv[1]
 
-It's probably important that images look okay here by default as well:
+    data = ibis.read_csv(file_path, names=["city", "temp"], sep=";")
 
-<Image src="/blog-post-4.jpg" width="718" height="404" alt="Image" />
+    res = (
+        data.group_by("city")
+        .aggregate(
+            min_val=data.temp.min(),
+            max_val=data.temp.max(),
+            mean_val=data.temp.mean().round(1),
+        )
+        .order_by("city")
+    )
 
-Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.
-
-Now I'm going to show you an example of an unordered list to make sure that looks good, too:
-
-- So here is the first item in this list.
-- In this example we're keeping the items short.
-- Later, we'll use longer, more complex list items.
-
-And that's the end of this section.
-
-## What if we stack headings?
-
-### We should make sure that looks good, too.
-
-Sometimes you have headings directly underneath each other. In those cases you often have to undo the top margin on the second heading because it usually looks better for the headings to be closer together than a paragraph followed by a heading should be.
-
-### When a heading comes after a paragraph …
-
-When a heading comes after a paragraph, we need a bit more space, like I already mentioned above. Now let's see what a more complex list would look like.
-
-- **I often do this thing where list items have headings.**
-
-  For some reason I think this looks cool which is unfortunate because it's pretty annoying to get the styles right.
-
-  I often have two or three paragraphs in these list items, too, so the hard part is getting the spacing between the paragraphs, list item heading, and separate list items to all make sense. Pretty tough honestly, you could make a strong argument that you just shouldn't write this way.
-
-- **Since this is a list, I need at least two items.**
-
-  I explained what I'm doing already in the previous list item, but a list wouldn't be a list if it only had one item, and we really want this to look realistic. That's why I've added this second list item so I actually have something to look at when writing the styles.
-
-- **It's not a bad idea to add a third item either.**
-
-  I think it probably would've been fine to just use two items but three is definitely not worse, and since I seem to be having no trouble making up arbitrary things to type, I might as well include it.
-
-After this sort of list I usually have a closing statement or paragraph, because it kinda looks weird jumping right to a heading.
-
-## Code should look okay by default.
-
-I think most people are going to use [highlight.js](https://highlightjs.org/) or [Prism](https://prismjs.com/) or something if they want to style their code blocks but it wouldn't hurt to make them look _okay_ out of the box, even with no syntax highlighting.
-
-Here's what a default `tailwind.config.js` file looks like at the time of writing:
-
-```js
-module.exports = {
-  purge: [],
-  theme: {
-    extend: {},
-  },
-  variants: {},
-  plugins: [],
-}
+    df = res.to_pandas()
 ```
 
-Hopefully that looks good enough to you.
+The advantage of using those libraries, is that it can be really easy to use, and they are already optimized for performance (the code runs in almost 10 sec on my machine).
+Except for Pandas, for which, if you try to read the file with the default parameters, you will likely run out of memory.
 
-### What about nested lists?
+### PyPy
 
-Nested lists basically always look bad which is why editors like Medium don't even let you do it, but I guess since some of you goofballs are going to do it we have to carry the burden of at least making it work.
+I also tried running the code with PyPy, a just-in-time compiler for Python, to see if it could offer any performance improvements.
 
-1.  **Nested lists are rarely a good idea.**
-    - You might feel like you are being really "organized" or something but you are just creating a gross shape on the screen that is hard to read.
-    - Nested navigation in UIs is a bad idea too, keep things as flat as possible.
-    - Nesting tons of folders in your source code is also not helpful.
-2.  **Since we need to have more items, here's another one.**
-    - I'm not sure if we'll bother styling more than two levels deep.
-    - Two is already too much, three is guaranteed to be a bad idea.
-    - If you nest four levels deep you belong in prison.
-3.  **Two items isn't really a list, three is good though.**
-    - Again please don't nest lists if you want people to actually read your content.
-    - Nobody wants to look at this.
-    - I'm upset that we even have to bother styling this.
+We went from 700 seconds to 184 seconds, which is a good improvement without changing any code. We will thus stick with that interpreter for the following optimizations.
 
-The most annoying thing about lists in Markdown is that `<li>` elements aren't given a child `<p>` tag unless there are multiple paragraphs in the list item. That means I have to worry about styling that annoying situation too.
+### Optimizations
 
-- **For example, here's another nested list.**
+- [Reading File Bytes](https://github.com/RomainEconomics/1rbc/blob/master/python/v2_pypy_bytes.py): Instead of reading the file line by line, I read the entire file as bytes.
+  - 60 seconds speedup
+- [Parsing Temperature as Integer](https://github.com/RomainEconomics/1rbc/blob/master/python/v3_pypy_temp_parsing.py): Parsing the temperature as an integer instead of a float to save processing time.
+  - Almost 30 seconds gained, from 124 to 96 seconds
+- [Multiprocessing](https://github.com/RomainEconomics/1rbc/blob/master/python/v5_pypy_mp_v2.py): Since Python's Global Interpreter Lock (GIL) limits the effectiveness of multithreading, I used multiprocessing to parallelize the task.
+  - 62 seconds - from 96 to 34 seconds
 
-  But this time with a second paragraph.
+Reading the file as bytes and parsing the temperature as an integer were the most significant optimizations before we were able to use multiprocessing. 
 
-  - These list items won't have `<p>` tags
-  - Because they are only one line each
+However, to read a file and process it using multiple core, we need to first ensures each core sees different chunks.
 
-- **But in this second top-level list item, they will.**
+For that, I defined this function:
 
-  This is especially annoying because of the spacing on this paragraph.
+```python
+def find_chunk_boundaries(filename: str, workers: int) -> list[tuple[int, int]]:
+    file_size = os.path.getsize(filename)
+    chunk_size = file_size // workers
+    chunks = []
 
-  - As you can see here, because I've added a second line, this list item now has a `<p>` tag.
+    def find_new_line(f: io.BufferedReader, start: int):
+        f.seek(start)
+        while True:
+            chunk = f.read(2048)
+            if b"\n" in chunk:
+                return start + chunk.index(b"\n") + 1
+            if len(chunk) < 2048:
+                return f.tell()
+            start += len(chunk)
 
-    This is the second line I'm talking about by the way.
+    with open(filename, "rb") as f:
+        start = 0
+        for _ in range(workers):
+            end = find_new_line(f, start + chunk_size)
+            chunks.append((start, end))
+            start = end
+    return chunks
+```
 
-  - Finally here's another list item so it's more like a list.
+This function will return the boundaries of the chunks that each worker will process.
+Moreover, we need to ensure that the end of a chunk fits exactly the end of a line, to avoid splitting a line between two workers.
 
-- A closing list item, but with no nested list, because why not?
 
-And finally a sentence to close off this section.
+Using all the cores on my machine (20) allowed to divide by almost 3 the time needed to process the file.
 
-## There are other elements we need to style
+Coming from 700 seconds, we are now at 34 seconds, which is a good improvement.
 
-I almost forgot to mention links, like [this link to the Tailwind CSS website](https://tailwindcss.com). We almost made them blue but that's so yesterday, so we went with dark gray, feels edgier.
+But we're still far from the performance of Polars or DuckDB.
 
-We even included table styles, check it out:
+## Rust Strategies
 
-| Wrestler                | Origin       | Finisher           |
-| ----------------------- | ------------ | ------------------ |
-| Bret "The Hitman" Hart  | Calgary, AB  | Sharpshooter       |
-| Stone Cold Steve Austin | Austin, TX   | Stone Cold Stunner |
-| Randy Savage            | Sarasota, FL | Elbow Drop         |
-| Vader                   | Boulder, CO  | Vader Bomb         |
-| Razor Ramon             | Chuluota, FL | Razor's Edge       |
+### Baseline in Pure Rust
 
-We also need to make sure inline code looks good, like if I wanted to talk about `<span>` elements or tell you the good news about `@tailwindcss/typography`.
+I started with a baseline implementation in pure Rust using a [buffered reader](https://github.com/RomainEconomics/1rbc/blob/master/rust/src/bin/v0_buffer_reader.rs).
 
-### Sometimes I even use `code` in headings
+### Optimizations
 
-Even though it's probably a bad idea, and historically I've had a hard time making it look good. This _"wrap the code blocks in backticks"_ trick works pretty well though really.
+- [Using Bytes](https://github.com/RomainEconomics/1rbc/blob/master/rust/src/bin/v1_bytes.rs): Reading the file as bytes for faster processing.
+- [Faster Hash Map](https://github.com/RomainEconomics/1rbc/blob/master/rust/src/bin/v2_faster_hash.rs): Using a more efficient hash map for storing city temperatures.
+- [Faster Float Parsing](https://github.com/RomainEconomics/1rbc/blob/master/rust/src/bin/v3_fast_float.rs): Optimizing the parsing of temperature values.
+- [Parsing Temperature as Integer](https://github.com/RomainEconomics/1rbc/blob/master/rust/src/bin/v4_parse_temp.rs): Similar to the Python approach, parsing the temperature as an integer.
+- [Memory-Mapped Files (mmap)](https://github.com/RomainEconomics/1rbc/blob/master/rust/src/bin/v5_mmap.rs): Using memory-mapped files for faster file I/O.
+- [Multithreading](https://github.com/RomainEconomics/1rbc/blob/master/rust/src/bin/v6_multi_threading_v1.rs): Utilizing Rust's powerful multithreading capabilities with Arc (Atomic Reference Counting) for shared state.
 
-Another thing I've done in the past is put a `code` tag inside of a link, like if I wanted to tell you about the [`tailwindcss/docs`](https://github.com/tailwindcss/docs) repository. I don't love that there is an underline below the backticks but it is absolutely not worth the madness it would require to avoid it.
+## Results
 
-#### We haven't used an `h4` yet
+| Strategy              | Language |   Mean | StdDev | Median |    Min |    Max |
+| :-------------------- | :------- | -----: | -----: | -----: | -----: | -----: |
+| v6_multi_threading_v1 | Rust     |   4.71 |   0.17 |   4.76 |   4.46 |   4.88 |
+| baseline_ibis_duckdb  | Python   |  11.25 |   0.52 |  11.34 |  10.71 |  11.82 |
+| baseline_polars       | Python   |  20.18 |  12.76 |  11.81 |  11.63 |  40.37 |
+| v5_mmap               | Rust     |  29.85 |   1.12 |  29.34 |  29.27 |  31.84 |
+| v5_pypy_mp_v2         | Python   |  34.77 |   9.42 |  32.78 |  24.41 |  46.29 |
+| v4_parse_temp         | Rust     |  39.34 |   0.13 |  39.28 |  39.24 |  39.56 |
+| v3_fast_float         | Rust     |  41.97 |   0.07 |  41.94 |  41.92 |  42.08 |
+| v4_pypy_mp            | Python   |  42.67 |   7.67 |  39.17 |  34.52 |  54.08 |
+| v2_faster_hash        | Rust     |  44.32 |   0.15 |  44.28 |  44.19 |   44.5 |
+| v1_bytes              | Rust     |  53.73 |   0.78 |  54.14 |   52.4 |   54.3 |
+| v0_buffer_reader      | Rust     |  77.43 |   5.76 |  75.23 |  74.19 |  87.68 |
+| v3_pypy_temp_parsing  | Python   |  96.24 |   0.55 |  96.32 |  95.52 |  96.81 |
+| v2_pypy_bytes         | Python   | 124.39 |   0.78 | 124.15 |  123.7 | 125.73 |
+| v1_pypy_list          | Python   | 181.59 |   0.37 | 181.74 | 181.09 |    182 |
+| v0_builtin_with_pypy  | Python   | 184.76 |   1.34 | 184.33 | 182.98 | 186.19 |
+| baseline_pandas       | Python   | 217.59 |   4.66 | 215.74 | 214.61 | 225.84 |
+| v0_builtin            | Python   | 703.82 |   12.6 | 699.51 | 695.57 | 725.97 |
 
-But now we have. Please don't use `h5` or `h6` in your content, Medium only supports two heading levels for a reason, you animals. I honestly considered using a `before` pseudo-element to scream at you if you use an `h5` or `h6`.
+## Analysis
 
-We don't style them at all out of the box because `h4` elements are already so small that they are the same size as the body copy. What are we supposed to do with an `h5`, make it _smaller_ than the body copy? No thanks.
+### Rust
 
-### We still need to think about stacked headings though.
+Rust consistently outperformed Python in all benchmarks for single threaded code. The fastest Rust implementation, which used multithreading, completed the task in just 4.71 seconds on average.
 
-#### Let's make sure we don't screw that up with `h4` elements, either.
+### Python
 
-Phew, with any luck we have styled the headings above this text and they look pretty good.
+Python, while slower than Rust, offers a rich ecosystem of libraries that can call C, C++, or even Rust code, making it easier to write and maintain. The fastest Python implementation using DuckDB completed the task in 11.25 seconds on
+average. PyPy provided some performance improvements, but it was still not as fast as Rust.
 
-Let's add a closing paragraph here so things end with a decently sized block of text. I can't explain why I want things to end that way but I have to assume it's because I think things will look weird or unbalanced if there is a heading too close to the end of the document.
+## Conclusion
 
-What I've written here is probably long enough, but adding this final sentence can't hurt.
+This exercise was a valuable learning experience. It highlighted the performance differences between Python and Rust and provided insights into various optimization techniques. While Rust is clearly faster, Python's ease of use and extensive library support make it a strong contender for many applications.
+
+Notably, I learned a lot about using multithreading in Rust (without using Rayon, a common library used for multithreading), memory-mapped files, and other optimization strategies. If performance is critical and you are comfortable with Rust, this seems like a good choice. However, for ease of development and leveraging existing libraries, Python remains a powerful tool.
+

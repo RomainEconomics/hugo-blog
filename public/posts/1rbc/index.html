@@ -79,8 +79,10 @@
     <meta property="article:tag" content="Python">
     <meta property="article:tag" content="Duckdb">
 
-  <meta name="twitter:card" content="summary"><meta name="twitter:title" content="1 Billion Rows Challenge">
-<meta name="twitter:description" content="1 Billion Rows Challenge using all the tools in the toolbox">
+  
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="1 Billion Rows Challenge">
+  <meta name="twitter:description" content="1 Billion Rows Challenge using all the tools in the toolbox">
 
   
   <script type="application/ld+json">
@@ -91,7 +93,7 @@
     "name": "1 Billion Rows Challenge",
     "headline": "1 Billion Rows Challenge",
     "description": "1 Billion Rows Challenge using all the tools in the toolbox",
-    "abstract": "Some title # Until now, trying to style an article, document, or blog post with Tailwind has been a tedious task that required a keen eye for typography and a lot of complex custom CSS.",
+    "abstract": "1 Billion Rows Challenge # Comparing Python and Rust for Processing Large Datasets # In this post, I will share my experience tackling the 1 Billion Rows Challenge.",
     "inLanguage": "en",
     "url" : "http:\/\/localhost:1313\/posts\/1rbc\/",
     "author" : {
@@ -107,7 +109,7 @@
     "keywords": ["data-engineering","rust","python","duckdb"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "1762"
+    "wordCount": "1360"
   }]
   </script>
 
@@ -124,7 +126,7 @@
   <link href="mailto:jouhameau.romain@gmail.com" rel="me" />
   
   
-  <link href="https://www.linkedin.com/in/jouhameau-romain-87064618b/" rel="me" />
+  <link href="https://www.linkedin.com/in/romain-jouhameau-87064618b/" rel="me" />
   
   
   
@@ -241,7 +243,7 @@
 
             
             
-  <a href="https://github.com/nunocoracao/blowfish"  target="_blank"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+  <a href="https://github.com/RomainEconomics"  target="_blank"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
     
     <span >
         
@@ -466,7 +468,7 @@
 
                     
   <li class="mt-1">
-    <a href="https://github.com/nunocoracao/blowfish"  target="_blank"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+    <a href="https://github.com/RomainEconomics"  target="_blank"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
         
         <div >
             
@@ -571,7 +573,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2024-04-16 00:00:00 &#43;0000 UTC">16 April 2024</time><span class="px-2 text-primary-500">&middot;</span><span>1762 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">9 mins</span><span class="px-2 text-primary-500">&middot;</span>
+  <time datetime="2024-04-16 00:00:00 &#43;0000 UTC">16 April 2024</time><span class="px-2 text-primary-500">&middot;</span><span>1360 words</span><span class="px-2 text-primary-500">&middot;</span><span title="Reading time">7 mins</span><span class="px-2 text-primary-500">&middot;</span>
 
 
 <script type="text/javascript" src="/js/zen-mode.min.ccc8b2a0c4505216444ca25530c7328aa0bef94f43dabaf3e598e1b4271de9eec76c1cb35917471a4f7ccb8d84051b3acef42baa30724ac3a667fcf1fec4432a.js" integrity="sha512-zMiyoMRQUhZETKJVMMcyiqC&#43;&#43;U9D2rrz5ZjhtCcd6e7HbByzWRdHGk98y42EBRs6zvQrqjBySsOmZ/zx/sRDKg=="></script>
@@ -692,36 +694,30 @@
     class="min-w-[220px] py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#what-to-expect-from-here-on-out">What to expect from here on out</a>
+    <li><a href="#comparing-python-and-rust-for-processing-large-datasets">Comparing Python and Rust for Processing Large Datasets</a></li>
+    <li><a href="#benchmarks">Benchmarks</a></li>
+    <li><a href="#python-strategies">Python Strategies</a>
       <ul>
-        <li><a href="#typography-should-be-easy">Typography should be easy</a></li>
+        <li><a href="#baseline-in-pure-python">Baseline in Pure Python</a></li>
+        <li><a href="#using-common-libraries">Using Common Libraries</a></li>
+        <li><a href="#pypy">PyPy</a></li>
+        <li><a href="#optimizations">Optimizations</a></li>
       </ul>
     </li>
-    <li><a href="#what-if-we-stack-headings">What if we stack headings?</a>
+    <li><a href="#rust-strategies">Rust Strategies</a>
       <ul>
-        <li><a href="#we-should-make-sure-that-looks-good-too">We should make sure that looks good, too.</a></li>
-        <li><a href="#when-a-heading-comes-after-a-paragraph-">When a heading comes after a paragraph …</a></li>
+        <li><a href="#baseline-in-pure-rust">Baseline in Pure Rust</a></li>
+        <li><a href="#optimizations-1">Optimizations</a></li>
       </ul>
     </li>
-    <li><a href="#code-should-look-okay-by-default">Code should look okay by default.</a>
+    <li><a href="#results">Results</a></li>
+    <li><a href="#analysis">Analysis</a>
       <ul>
-        <li><a href="#what-about-nested-lists">What about nested lists?</a></li>
+        <li><a href="#rust">Rust</a></li>
+        <li><a href="#python">Python</a></li>
       </ul>
     </li>
-    <li><a href="#there-are-other-elements-we-need-to-style">There are other elements we need to style</a>
-      <ul>
-        <li><a href="#sometimes-i-even-use-code-in-headings">Sometimes I even use <code>code</code> in headings</a>
-          <ul>
-            <li><a href="#we-havent-used-an-h4-yet">We haven&rsquo;t used an <code>h4</code> yet</a></li>
-          </ul>
-        </li>
-        <li><a href="#we-still-need-to-think-about-stacked-headings-though">We still need to think about stacked headings though.</a>
-          <ul>
-            <li><a href="#lets-make-sure-we-dont-screw-that-up-with-h4-elements-either">Let&rsquo;s make sure we don&rsquo;t screw that up with <code>h4</code> elements, either.</a></li>
-          </ul>
-        </li>
-      </ul>
-    </li>
+    <li><a href="#conclusion">Conclusion</a></li>
   </ul>
 </nav>
   </div>
@@ -735,36 +731,30 @@
     class="py-2 border-dotted border-neutral-300 ltr:-ml-5 ltr:border-l ltr:pl-5 rtl:-mr-5 rtl:border-r rtl:pr-5 dark:border-neutral-600">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#what-to-expect-from-here-on-out">What to expect from here on out</a>
+    <li><a href="#comparing-python-and-rust-for-processing-large-datasets">Comparing Python and Rust for Processing Large Datasets</a></li>
+    <li><a href="#benchmarks">Benchmarks</a></li>
+    <li><a href="#python-strategies">Python Strategies</a>
       <ul>
-        <li><a href="#typography-should-be-easy">Typography should be easy</a></li>
+        <li><a href="#baseline-in-pure-python">Baseline in Pure Python</a></li>
+        <li><a href="#using-common-libraries">Using Common Libraries</a></li>
+        <li><a href="#pypy">PyPy</a></li>
+        <li><a href="#optimizations">Optimizations</a></li>
       </ul>
     </li>
-    <li><a href="#what-if-we-stack-headings">What if we stack headings?</a>
+    <li><a href="#rust-strategies">Rust Strategies</a>
       <ul>
-        <li><a href="#we-should-make-sure-that-looks-good-too">We should make sure that looks good, too.</a></li>
-        <li><a href="#when-a-heading-comes-after-a-paragraph-">When a heading comes after a paragraph …</a></li>
+        <li><a href="#baseline-in-pure-rust">Baseline in Pure Rust</a></li>
+        <li><a href="#optimizations-1">Optimizations</a></li>
       </ul>
     </li>
-    <li><a href="#code-should-look-okay-by-default">Code should look okay by default.</a>
+    <li><a href="#results">Results</a></li>
+    <li><a href="#analysis">Analysis</a>
       <ul>
-        <li><a href="#what-about-nested-lists">What about nested lists?</a></li>
+        <li><a href="#rust">Rust</a></li>
+        <li><a href="#python">Python</a></li>
       </ul>
     </li>
-    <li><a href="#there-are-other-elements-we-need-to-style">There are other elements we need to style</a>
-      <ul>
-        <li><a href="#sometimes-i-even-use-code-in-headings">Sometimes I even use <code>code</code> in headings</a>
-          <ul>
-            <li><a href="#we-havent-used-an-h4-yet">We haven&rsquo;t used an <code>h4</code> yet</a></li>
-          </ul>
-        </li>
-        <li><a href="#we-still-need-to-think-about-stacked-headings-though">We still need to think about stacked headings though.</a>
-          <ul>
-            <li><a href="#lets-make-sure-we-dont-screw-that-up-with-h4-elements-either">Let&rsquo;s make sure we don&rsquo;t screw that up with <code>h4</code> elements, either.</a></li>
-          </ul>
-        </li>
-      </ul>
-    </li>
+    <li><a href="#conclusion">Conclusion</a></li>
   </ul>
 </nav>
   </div>
@@ -784,7 +774,7 @@
         h.each(function (i, e) {
           e = $(e);
           if (e.offset().top - $(window).height()/3 <= currentScroll) {
-            id = e.attr('id');
+            id = decodeURIComponent(e.attr('id'));
           }
         });
         var active = $toc.find('a.active');      
@@ -809,6 +799,7 @@
     }
   })();
 </script>
+
    </div>
       </div>
       
@@ -821,339 +812,760 @@
         <div class="article-content max-w-prose mb-20">
           
 
-<h1 class="relative group">Some title 
-    <div id="some-title" class="anchor"></div>
+<h1 class="relative group">1 Billion Rows Challenge 
+    <div id="1-billion-rows-challenge" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#some-title" aria-label="Anchor">#</a>
+            style="text-decoration-line: none !important;" href="#1-billion-rows-challenge" aria-label="Anchor">#</a>
     </span>        
     
 </h1>
-<p>Until now, trying to style an article, document, or blog post with Tailwind has been a tedious task that required a keen eye for typography and a lot of complex custom CSS.</p>
-<p>By default, Tailwind removes all of the default browser styling from paragraphs, headings, lists and more. This ends up being really useful for building application UIs because you spend less time undoing user-agent styles, but when you <em>really are</em> just trying to style some content that came from a rich-text editor in a CMS or a markdown file, it can be surprising and unintuitive.</p>
-<p>We get lots of complaints about it actually, with people regularly asking us things like:</p>
-<blockquote>
-<p>Why is Tailwind removing the default styles on my <code>h1</code> elements? How do I disable this? What do you mean I lose all the other base styles too?
-We hear you, but we&rsquo;re not convinced that simply disabling our base styles is what you really want. You don&rsquo;t want to have to remove annoying margins every time you use a <code>p</code> element in a piece of your dashboard UI. And I doubt you really want your blog posts to use the user-agent styles either — you want them to look <em>awesome</em>, not awful.</p>
-</blockquote>
-<p>The <code>@tailwindcss/typography</code> plugin is our attempt to give you what you <em>actually</em> want, without any of the downsides of doing something stupid like disabling our base styles.</p>
-<p>It adds a new <code>prose</code> class that you can slap on any block of vanilla HTML content and turn it into a beautiful, well-formatted document:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">article</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;prose&#34;</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>Garlic bread with cheese: What the science tells us<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">    For years parents have espoused the health benefits of eating garlic bread
-</span></span><span class="line"><span class="cl">    with cheese to their children, with the food earning such an iconic status
-</span></span><span class="line"><span class="cl">    in our culture that kids will often dress up as warm, cheesy loaf for
-</span></span><span class="line"><span class="cl">    Halloween.
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl">    But a recent study shows that the celebrated appetizer may be linked to a
-</span></span><span class="line"><span class="cl">    series of rabies cases springing up around the country.
-</span></span><span class="line"><span class="cl">  <span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">article</span><span class="p">&gt;</span>
-</span></span></code></pre></div><p>For more information about how to use the plugin and the features it includes, <a href="https://github.com/tailwindcss/typography/blob/master/README.md"   target="_blank">
-    read the documentation</a>.</p>
-<hr>
 
 
-<h2 class="relative group">What to expect from here on out 
-    <div id="what-to-expect-from-here-on-out" class="anchor"></div>
+<h2 class="relative group">Comparing Python and Rust for Processing Large Datasets 
+    <div id="comparing-python-and-rust-for-processing-large-datasets" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#what-to-expect-from-here-on-out" aria-label="Anchor">#</a>
+            style="text-decoration-line: none !important;" href="#comparing-python-and-rust-for-processing-large-datasets" aria-label="Anchor">#</a>
     </span>        
     
 </h2>
-<p>What follows from here is just a bunch of absolute nonsense I&rsquo;ve written to dogfood the plugin itself. It includes every sensible typographic element I could think of, like <strong>bold text</strong>, unordered lists, ordered lists, code blocks, block quotes, <em>and even italics</em>.</p>
-<p>It&rsquo;s important to cover all of these use cases for a few reasons:</p>
-<ol>
-<li>We want everything to look good out of the box.</li>
-<li>Really just the first reason, that&rsquo;s the whole point of the plugin.</li>
-<li>Here&rsquo;s a third pretend reason though a list with three items looks more realistic than a list with two items.</li>
-</ol>
-<p>Now we&rsquo;re going to try out another header style.</p>
+<p>In this post, I will share my experience tackling the <a href="https://github.com/gunnarmorling/1brc"   target="_blank">
+    1 Billion Rows Challenge</a>. This consists in reading a dataset with 1 billion rows and 2 columns (city, temp) and computing the minimum, maximum, and mean temperaturefor each city. I approached this problem using both Python and Rust to compare their performance and capabilities. Below, I will walk you through the different strategies I employed for each language and the results of my benchmarks.</p>
+<p>Note that all the code and benchmarks are available in the github repo:</p>
+<a id="github-afeae442831a8014aced5395fceff079" target="_blank" href="https://github.com/RomainEconomics/1rbc" class="cursor-pointer">
+  <div
+    class="w-full md:w-auto pt-3 p-5 border border-neutral-200 dark:border-neutral-700 border rounded-md shadow-2xl">
+
+    <div class="flex items-center">
+      <span class="text-2xl text-neutral-800 dark:text-neutral" style="margin-right:10px;">
+        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+
+  </span>
 
 
-<h3 class="relative group">Typography should be easy 
-    <div id="typography-should-be-easy" class="anchor"></div>
+      </span>
+      <div
+        id="github-afeae442831a8014aced5395fceff079-full_name"
+        class="m-0 font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral">
+        RomainEconomics/1rbc
+      </div>
+    </div>
+
+    <p id="github-afeae442831a8014aced5395fceff079-description" class="m-0 mt-2 text-md text-neutral-800 dark:text-neutral">
+      
+    </p>
+
+    <div class="m-0 mt-2 flex items-center">
+
+      <span class="mr-1 inline-block h-3 w-3 rounded-full"
+        style="background-color: #dea584"></span>
+      <div class="m-0 mr-5 text-md text-neutral-800 dark:text-neutral">
+         Rust 
+      </div>
+
+      <span class="text-md mr-1 text-neutral-800 dark:text-neutral">
+        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M287.9 0C297.1 0 305.5 5.25 309.5 13.52L378.1 154.8L531.4 177.5C540.4 178.8 547.8 185.1 550.7 193.7C553.5 202.4 551.2 211.9 544.8 218.2L433.6 328.4L459.9 483.9C461.4 492.9 457.7 502.1 450.2 507.4C442.8 512.7 432.1 513.4 424.9 509.1L287.9 435.9L150.1 509.1C142.9 513.4 133.1 512.7 125.6 507.4C118.2 502.1 114.5 492.9 115.1 483.9L142.2 328.4L31.11 218.2C24.65 211.9 22.36 202.4 25.2 193.7C28.03 185.1 35.5 178.8 44.49 177.5L197.7 154.8L266.3 13.52C270.4 5.249 278.7 0 287.9 0L287.9 0zM287.9 78.95L235.4 187.2C231.9 194.3 225.1 199.3 217.3 200.5L98.98 217.9L184.9 303C190.4 308.5 192.9 316.4 191.6 324.1L171.4 443.7L276.6 387.5C283.7 383.7 292.2 383.7 299.2 387.5L404.4 443.7L384.2 324.1C382.9 316.4 385.5 308.5 391 303L476.9 217.9L358.6 200.5C350.7 199.3 343.9 194.3 340.5 187.2L287.9 78.95z"/></svg>
+  </span>
+
+
+      </span>
+      <div id="github-afeae442831a8014aced5395fceff079-stargazers" class="m-0 mr-5 text-md text-neutral-800 dark:text-neutral">
+        0
+      </div>
+
+      <span class="text-md mr-1 text-neutral-800 dark:text-neutral">
+        
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M80 104c13.3 0 24-10.7 24-24s-10.7-24-24-24S56 66.7 56 80s10.7 24 24 24zm80-24c0 32.8-19.7 61-48 73.3V192c0 17.7 14.3 32 32 32H304c17.7 0 32-14.3 32-32V153.3C307.7 141 288 112.8 288 80c0-44.2 35.8-80 80-80s80 35.8 80 80c0 32.8-19.7 61-48 73.3V192c0 53-43 96-96 96H256v70.7c28.3 12.3 48 40.5 48 73.3c0 44.2-35.8 80-80 80s-80-35.8-80-80c0-32.8 19.7-61 48-73.3V288H144c-53 0-96-43-96-96V153.3C19.7 141 0 112.8 0 80C0 35.8 35.8 0 80 0s80 35.8 80 80zm208 24c13.3 0 24-10.7 24-24s-10.7-24-24-24s-24 10.7-24 24s10.7 24 24 24zM248 432c0-13.3-10.7-24-24-24s-24 10.7-24 24s10.7 24 24 24s24-10.7 24-24z"/></svg>
+  </span>
+
+
+      </span>
+      <div id="github-afeae442831a8014aced5395fceff079-forks" class="m-0 mr-5 text-md text-neutral-800 dark:text-neutral">
+        0
+      </div>
+
+    </div>
+
+  </div>
+  <script>
+    fetch("https://api.github.com/repos/RomainEconomics/1rbc", {
+      headers: new Headers({
+        'User-agent': 'Mozilla/4.0 Custom User Agent'
+      })
+    })
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById('github-afeae442831a8014aced5395fceff079-full_name').innerHTML = data.full_name;
+        document.getElementById('github-afeae442831a8014aced5395fceff079-description').innerHTML = data.description;
+        document.getElementById('github-afeae442831a8014aced5395fceff079-stargazers').innerHTML = data.stargazers_count;
+        document.getElementById('github-afeae442831a8014aced5395fceff079-forks').innerHTML = data.forks;
+      })
+      .catch(error => console.error(error))
+  </script>
+</a>
+<p>To generate the file used for the computation, go the <a href="https://github.com/gunnarmorling/1brc"   target="_blank">
+    1BRC repo</a>.</p>
+
+
+<h2 class="relative group">Benchmarks 
+    <div id="benchmarks" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#typography-should-be-easy" aria-label="Anchor">#</a>
-    </span>        
-    
-</h3>
-<p>So that&rsquo;s a header for you — with any luck if we&rsquo;ve done our job correctly that will look pretty reasonable.</p>
-<p>Something a wise person once told me about typography is:</p>
-<blockquote>
-<p>Typography is pretty important if you don&rsquo;t want your stuff to look like trash. Make it good then it won&rsquo;t be bad.</p>
-</blockquote>
-<p>It&rsquo;s probably important that images look okay here by default as well:</p>
-<Image src="/blog-post-4.jpg" width="718" height="404" alt="Image" />
-<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>
-<p>Now I&rsquo;m going to show you an example of an unordered list to make sure that looks good, too:</p>
-<ul>
-<li>So here is the first item in this list.</li>
-<li>In this example we&rsquo;re keeping the items short.</li>
-<li>Later, we&rsquo;ll use longer, more complex list items.</li>
-</ul>
-<p>And that&rsquo;s the end of this section.</p>
-
-
-<h2 class="relative group">What if we stack headings? 
-    <div id="what-if-we-stack-headings" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#what-if-we-stack-headings" aria-label="Anchor">#</a>
-    </span>        
-    
-</h2>
-
-
-<h3 class="relative group">We should make sure that looks good, too. 
-    <div id="we-should-make-sure-that-looks-good-too" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#we-should-make-sure-that-looks-good-too" aria-label="Anchor">#</a>
-    </span>        
-    
-</h3>
-<p>Sometimes you have headings directly underneath each other. In those cases you often have to undo the top margin on the second heading because it usually looks better for the headings to be closer together than a paragraph followed by a heading should be.</p>
-
-
-<h3 class="relative group">When a heading comes after a paragraph … 
-    <div id="when-a-heading-comes-after-a-paragraph-" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#when-a-heading-comes-after-a-paragraph-" aria-label="Anchor">#</a>
-    </span>        
-    
-</h3>
-<p>When a heading comes after a paragraph, we need a bit more space, like I already mentioned above. Now let&rsquo;s see what a more complex list would look like.</p>
-<ul>
-<li>
-<p><strong>I often do this thing where list items have headings.</strong></p>
-<p>For some reason I think this looks cool which is unfortunate because it&rsquo;s pretty annoying to get the styles right.</p>
-<p>I often have two or three paragraphs in these list items, too, so the hard part is getting the spacing between the paragraphs, list item heading, and separate list items to all make sense. Pretty tough honestly, you could make a strong argument that you just shouldn&rsquo;t write this way.</p>
-</li>
-<li>
-<p><strong>Since this is a list, I need at least two items.</strong></p>
-<p>I explained what I&rsquo;m doing already in the previous list item, but a list wouldn&rsquo;t be a list if it only had one item, and we really want this to look realistic. That&rsquo;s why I&rsquo;ve added this second list item so I actually have something to look at when writing the styles.</p>
-</li>
-<li>
-<p><strong>It&rsquo;s not a bad idea to add a third item either.</strong></p>
-<p>I think it probably would&rsquo;ve been fine to just use two items but three is definitely not worse, and since I seem to be having no trouble making up arbitrary things to type, I might as well include it.</p>
-</li>
-</ul>
-<p>After this sort of list I usually have a closing statement or paragraph, because it kinda looks weird jumping right to a heading.</p>
-
-
-<h2 class="relative group">Code should look okay by default. 
-    <div id="code-should-look-okay-by-default" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#code-should-look-okay-by-default" aria-label="Anchor">#</a>
+            style="text-decoration-line: none !important;" href="#benchmarks" aria-label="Anchor">#</a>
     </span>        
     
 </h2>
-<p>I think most people are going to use <a href="https://highlightjs.org/"   target="_blank">
-    highlight.js</a> or <a href="https://prismjs.com/"   target="_blank">
-    Prism</a> or something if they want to style their code blocks but it wouldn&rsquo;t hurt to make them look <em>okay</em> out of the box, even with no syntax highlighting.</p>
-<p>Here&rsquo;s what a default <code>tailwind.config.js</code> file looks like at the time of writing:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">purge</span><span class="o">:</span> <span class="p">[],</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">theme</span><span class="o">:</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nx">extend</span><span class="o">:</span> <span class="p">{},</span>
-</span></span><span class="line"><span class="cl">  <span class="p">},</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">variants</span><span class="o">:</span> <span class="p">{},</span>
-</span></span><span class="line"><span class="cl">  <span class="nx">plugins</span><span class="o">:</span> <span class="p">[],</span>
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></div><p>Hopefully that looks good enough to you.</p>
-
-
-<h3 class="relative group">What about nested lists? 
-    <div id="what-about-nested-lists" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#what-about-nested-lists" aria-label="Anchor">#</a>
-    </span>        
-    
-</h3>
-<p>Nested lists basically always look bad which is why editors like Medium don&rsquo;t even let you do it, but I guess since some of you goofballs are going to do it we have to carry the burden of at least making it work.</p>
-<ol>
-<li><strong>Nested lists are rarely a good idea.</strong>
-<ul>
-<li>You might feel like you are being really &ldquo;organized&rdquo; or something but you are just creating a gross shape on the screen that is hard to read.</li>
-<li>Nested navigation in UIs is a bad idea too, keep things as flat as possible.</li>
-<li>Nesting tons of folders in your source code is also not helpful.</li>
-</ul>
-</li>
-<li><strong>Since we need to have more items, here&rsquo;s another one.</strong>
-<ul>
-<li>I&rsquo;m not sure if we&rsquo;ll bother styling more than two levels deep.</li>
-<li>Two is already too much, three is guaranteed to be a bad idea.</li>
-<li>If you nest four levels deep you belong in prison.</li>
-</ul>
-</li>
-<li><strong>Two items isn&rsquo;t really a list, three is good though.</strong>
-<ul>
-<li>Again please don&rsquo;t nest lists if you want people to actually read your content.</li>
-<li>Nobody wants to look at this.</li>
-<li>I&rsquo;m upset that we even have to bother styling this.</li>
-</ul>
-</li>
-</ol>
-<p>The most annoying thing about lists in Markdown is that <code>&lt;li&gt;</code> elements aren&rsquo;t given a child <code>&lt;p&gt;</code> tag unless there are multiple paragraphs in the list item. That means I have to worry about styling that annoying situation too.</p>
-<ul>
-<li>
-<p><strong>For example, here&rsquo;s another nested list.</strong></p>
-<p>But this time with a second paragraph.</p>
-<ul>
-<li>These list items won&rsquo;t have <code>&lt;p&gt;</code> tags</li>
-<li>Because they are only one line each</li>
-</ul>
-</li>
-<li>
-<p><strong>But in this second top-level list item, they will.</strong></p>
-<p>This is especially annoying because of the spacing on this paragraph.</p>
-<ul>
-<li>
-<p>As you can see here, because I&rsquo;ve added a second line, this list item now has a <code>&lt;p&gt;</code> tag.</p>
-<p>This is the second line I&rsquo;m talking about by the way.</p>
-</li>
-<li>
-<p>Finally here&rsquo;s another list item so it&rsquo;s more like a list.</p>
-</li>
-</ul>
-</li>
-<li>
-<p>A closing list item, but with no nested list, because why not?</p>
-</li>
-</ul>
-<p>And finally a sentence to close off this section.</p>
-
-
-<h2 class="relative group">There are other elements we need to style 
-    <div id="there-are-other-elements-we-need-to-style" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#there-are-other-elements-we-need-to-style" aria-label="Anchor">#</a>
-    </span>        
-    
-</h2>
-<p>I almost forgot to mention links, like <a href="https://tailwindcss.com"   target="_blank">
-    this link to the Tailwind CSS website</a>. We almost made them blue but that&rsquo;s so yesterday, so we went with dark gray, feels edgier.</p>
-<p>We even included table styles, check it out:</p>
+<p>As a teaser, here the results of the benchmarks:</p>
 <table>
 <thead>
 <tr>
-<th>Wrestler</th>
-<th>Origin</th>
-<th>Finisher</th>
+<th style="text-align:left">Strategy</th>
+<th style="text-align:left">Language</th>
+<th style="text-align:right">Mean</th>
+<th style="text-align:right">StdDev</th>
+<th style="text-align:right">Median</th>
+<th style="text-align:right">Min</th>
+<th style="text-align:right">Max</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>Bret &ldquo;The Hitman&rdquo; Hart</td>
-<td>Calgary, AB</td>
-<td>Sharpshooter</td>
+<td style="text-align:left">v6_multi_threading_v1</td>
+<td style="text-align:left">Rust</td>
+<td style="text-align:right">4.71</td>
+<td style="text-align:right">0.17</td>
+<td style="text-align:right">4.76</td>
+<td style="text-align:right">4.46</td>
+<td style="text-align:right">4.88</td>
 </tr>
 <tr>
-<td>Stone Cold Steve Austin</td>
-<td>Austin, TX</td>
-<td>Stone Cold Stunner</td>
+<td style="text-align:left">baseline_ibis_duckdb</td>
+<td style="text-align:left">Python</td>
+<td style="text-align:right">11.25</td>
+<td style="text-align:right">0.52</td>
+<td style="text-align:right">11.34</td>
+<td style="text-align:right">10.71</td>
+<td style="text-align:right">11.82</td>
 </tr>
 <tr>
-<td>Randy Savage</td>
-<td>Sarasota, FL</td>
-<td>Elbow Drop</td>
+<td style="text-align:left">baseline_polars</td>
+<td style="text-align:left">Python</td>
+<td style="text-align:right">20.18</td>
+<td style="text-align:right">12.76</td>
+<td style="text-align:right">11.81</td>
+<td style="text-align:right">11.63</td>
+<td style="text-align:right">40.37</td>
 </tr>
 <tr>
-<td>Vader</td>
-<td>Boulder, CO</td>
-<td>Vader Bomb</td>
+<td style="text-align:left">v5_mmap</td>
+<td style="text-align:left">Rust</td>
+<td style="text-align:right">29.85</td>
+<td style="text-align:right">1.12</td>
+<td style="text-align:right">29.34</td>
+<td style="text-align:right">29.27</td>
+<td style="text-align:right">31.84</td>
 </tr>
 <tr>
-<td>Razor Ramon</td>
-<td>Chuluota, FL</td>
-<td>Razor&rsquo;s Edge</td>
+<td style="text-align:left">v5_pypy_mp_v2</td>
+<td style="text-align:left">Python</td>
+<td style="text-align:right">34.77</td>
+<td style="text-align:right">9.42</td>
+<td style="text-align:right">32.78</td>
+<td style="text-align:right">24.41</td>
+<td style="text-align:right">46.29</td>
+</tr>
+<tr>
+<td style="text-align:left">v4_parse_temp</td>
+<td style="text-align:left">Rust</td>
+<td style="text-align:right">39.34</td>
+<td style="text-align:right">0.13</td>
+<td style="text-align:right">39.28</td>
+<td style="text-align:right">39.24</td>
+<td style="text-align:right">39.56</td>
+</tr>
+<tr>
+<td style="text-align:left">v3_fast_float</td>
+<td style="text-align:left">Rust</td>
+<td style="text-align:right">41.97</td>
+<td style="text-align:right">0.07</td>
+<td style="text-align:right">41.94</td>
+<td style="text-align:right">41.92</td>
+<td style="text-align:right">42.08</td>
+</tr>
+<tr>
+<td style="text-align:left">v4_pypy_mp</td>
+<td style="text-align:left">Python</td>
+<td style="text-align:right">42.67</td>
+<td style="text-align:right">7.67</td>
+<td style="text-align:right">39.17</td>
+<td style="text-align:right">34.52</td>
+<td style="text-align:right">54.08</td>
+</tr>
+<tr>
+<td style="text-align:left">v2_faster_hash</td>
+<td style="text-align:left">Rust</td>
+<td style="text-align:right">44.32</td>
+<td style="text-align:right">0.15</td>
+<td style="text-align:right">44.28</td>
+<td style="text-align:right">44.19</td>
+<td style="text-align:right">44.5</td>
+</tr>
+<tr>
+<td style="text-align:left">v1_bytes</td>
+<td style="text-align:left">Rust</td>
+<td style="text-align:right">53.73</td>
+<td style="text-align:right">0.78</td>
+<td style="text-align:right">54.14</td>
+<td style="text-align:right">52.4</td>
+<td style="text-align:right">54.3</td>
+</tr>
+<tr>
+<td style="text-align:left">v0_buffer_reader</td>
+<td style="text-align:left">Rust</td>
+<td style="text-align:right">77.43</td>
+<td style="text-align:right">5.76</td>
+<td style="text-align:right">75.23</td>
+<td style="text-align:right">74.19</td>
+<td style="text-align:right">87.68</td>
+</tr>
+<tr>
+<td style="text-align:left">v3_pypy_temp_parsing</td>
+<td style="text-align:left">Python</td>
+<td style="text-align:right">96.24</td>
+<td style="text-align:right">0.55</td>
+<td style="text-align:right">96.32</td>
+<td style="text-align:right">95.52</td>
+<td style="text-align:right">96.81</td>
+</tr>
+<tr>
+<td style="text-align:left">v2_pypy_bytes</td>
+<td style="text-align:left">Python</td>
+<td style="text-align:right">124.39</td>
+<td style="text-align:right">0.78</td>
+<td style="text-align:right">124.15</td>
+<td style="text-align:right">123.7</td>
+<td style="text-align:right">125.73</td>
+</tr>
+<tr>
+<td style="text-align:left">v1_pypy_list</td>
+<td style="text-align:left">Python</td>
+<td style="text-align:right">181.59</td>
+<td style="text-align:right">0.37</td>
+<td style="text-align:right">181.74</td>
+<td style="text-align:right">181.09</td>
+<td style="text-align:right">182</td>
+</tr>
+<tr>
+<td style="text-align:left">v0_builtin_with_pypy</td>
+<td style="text-align:left">Python</td>
+<td style="text-align:right">184.76</td>
+<td style="text-align:right">1.34</td>
+<td style="text-align:right">184.33</td>
+<td style="text-align:right">182.98</td>
+<td style="text-align:right">186.19</td>
+</tr>
+<tr>
+<td style="text-align:left">baseline_pandas</td>
+<td style="text-align:left">Python</td>
+<td style="text-align:right">217.59</td>
+<td style="text-align:right">4.66</td>
+<td style="text-align:right">215.74</td>
+<td style="text-align:right">214.61</td>
+<td style="text-align:right">225.84</td>
+</tr>
+<tr>
+<td style="text-align:left">v0_builtin</td>
+<td style="text-align:left">Python</td>
+<td style="text-align:right">703.82</td>
+<td style="text-align:right">12.6</td>
+<td style="text-align:right">699.51</td>
+<td style="text-align:right">695.57</td>
+<td style="text-align:right">725.97</td>
 </tr>
 </tbody>
 </table>
-<p>We also need to make sure inline code looks good, like if I wanted to talk about <code>&lt;span&gt;</code> elements or tell you the good news about <code>@tailwindcss/typography</code>.</p>
 
 
-<h3 class="relative group">Sometimes I even use <code>code</code> in headings 
-    <div id="sometimes-i-even-use-code-in-headings" class="anchor"></div>
+<h2 class="relative group">Python Strategies 
+    <div id="python-strategies" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#sometimes-i-even-use-code-in-headings" aria-label="Anchor">#</a>
+            style="text-decoration-line: none !important;" href="#python-strategies" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+
+
+<h3 class="relative group">Baseline in Pure Python 
+    <div id="baseline-in-pure-python" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#baseline-in-pure-python" aria-label="Anchor">#</a>
     </span>        
     
 </h3>
-<p>Even though it&rsquo;s probably a bad idea, and historically I&rsquo;ve had a hard time making it look good. This <em>&ldquo;wrap the code blocks in backticks&rdquo;</em> trick works pretty well though really.</p>
-<p>Another thing I&rsquo;ve done in the past is put a <code>code</code> tag inside of a link, like if I wanted to tell you about the <a href="https://github.com/tailwindcss/docs"   target="_blank">
-    <code>tailwindcss/docs</code></a> repository. I don&rsquo;t love that there is an underline below the backticks but it is absolutely not worth the madness it would require to avoid it.</p>
+<p>I started with a baseline implementation in pure Python. This approach was straightforward but not optimized for performance.</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">sys</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">class</span> <span class="nc">TempStat</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">temp</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">min_val</span> <span class="o">=</span> <span class="n">temp</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">max_val</span> <span class="o">=</span> <span class="n">temp</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">sum_val</span> <span class="o">=</span> <span class="n">temp</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">count</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">mean</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">sum_val</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">count</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">update</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">temp</span><span class="p">:</span> <span class="nb">float</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">min_val</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">min_val</span><span class="p">,</span> <span class="n">temp</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">max_val</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">max_val</span><span class="p">,</span> <span class="n">temp</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">sum_val</span> <span class="o">+=</span> <span class="n">temp</span>
+</span></span><span class="line"><span class="cl">        <span class="bp">self</span><span class="o">.</span><span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">file_path</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">cities</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">TempStat</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="s2">&#34;r&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">idx</span><span class="p">,</span> <span class="n">line</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">file</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="n">city</span><span class="p">,</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34;;&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="n">city</span> <span class="ow">in</span> <span class="n">cities</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">cities</span><span class="p">[</span><span class="n">city</span><span class="p">]</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">temp</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">            <span class="k">else</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="n">cities</span><span class="p">[</span><span class="n">city</span><span class="p">]</span> <span class="o">=</span> <span class="n">TempStat</span><span class="p">(</span><span class="nb">float</span><span class="p">(</span><span class="n">temp</span><span class="p">))</span>
+</span></span></code></pre></div><p>This code runs, but is very slow (more than 700 seconds).</p>
+<p>Several problems can be identified:</p>
+<ul>
+<li>It uses the python interpreter, which is not the most performant, as we will see.</li>
+<li>We read each line as a string, instead of bytes, which is slower.</li>
+<li>Each temperature is parsed to float</li>
+<li>Only one thread, and one core is used</li>
+</ul>
+<p>We will try to improve on these points in the following sections.</p>
+<p>But first, even if the goal is to use plain Python and Rust, as possible, it is interesting to compare our results to some more popular, and more optimized libraries.</p>
 
 
-<h4 class="relative group">We haven&rsquo;t used an <code>h4</code> yet 
-    <div id="we-havent-used-an-h4-yet" class="anchor"></div>
+<h3 class="relative group">Using Common Libraries 
+    <div id="using-common-libraries" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#we-havent-used-an-h4-yet" aria-label="Anchor">#</a>
-    </span>        
-    
-</h4>
-<p>But now we have. Please don&rsquo;t use <code>h5</code> or <code>h6</code> in your content, Medium only supports two heading levels for a reason, you animals. I honestly considered using a <code>before</code> pseudo-element to scream at you if you use an <code>h5</code> or <code>h6</code>.</p>
-<p>We don&rsquo;t style them at all out of the box because <code>h4</code> elements are already so small that they are the same size as the body copy. What are we supposed to do with an <code>h5</code>, make it <em>smaller</em> than the body copy? No thanks.</p>
-
-
-<h3 class="relative group">We still need to think about stacked headings though. 
-    <div id="we-still-need-to-think-about-stacked-headings-though" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#we-still-need-to-think-about-stacked-headings-though" aria-label="Anchor">#</a>
+            style="text-decoration-line: none !important;" href="#using-common-libraries" aria-label="Anchor">#</a>
     </span>        
     
 </h3>
+<p>Next, I leveraged some popular Python libraries known for their performance with large datasets:</p>
+<ul>
+<li>Pandas: A powerful data manipulation library. The most used one in Python, but not the fastest.</li>
+<li>Polars: A fast DataFrame library.</li>
+<li>DuckDB: An in-process SQL OLAP database management system.</li>
+</ul>
+<p>As an example, the code for DuckDB (using Ibis as a wrapper around it):</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">sys</span>
+</span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">ibis</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">file_path</span> <span class="o">=</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">data</span> <span class="o">=</span> <span class="n">ibis</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s2">&#34;city&#34;</span><span class="p">,</span> <span class="s2">&#34;temp&#34;</span><span class="p">],</span> <span class="n">sep</span><span class="o">=</span><span class="s2">&#34;;&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">res</span> <span class="o">=</span> <span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="n">data</span><span class="o">.</span><span class="n">group_by</span><span class="p">(</span><span class="s2">&#34;city&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="n">aggregate</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="n">min_val</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">temp</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">            <span class="n">max_val</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">temp</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
+</span></span><span class="line"><span class="cl">            <span class="n">mean_val</span><span class="o">=</span><span class="n">data</span><span class="o">.</span><span class="n">temp</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">        <span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="o">.</span><span class="n">order_by</span><span class="p">(</span><span class="s2">&#34;city&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">df</span> <span class="o">=</span> <span class="n">res</span><span class="o">.</span><span class="n">to_pandas</span><span class="p">()</span>
+</span></span></code></pre></div><p>The advantage of using those libraries, is that it can be really easy to use, and they are already optimized for performance (the code runs in almost 10 sec on my machine).
+Except for Pandas, for which, if you try to read the file with the default parameters, you will likely run out of memory.</p>
 
 
-<h4 class="relative group">Let&rsquo;s make sure we don&rsquo;t screw that up with <code>h4</code> elements, either. 
-    <div id="lets-make-sure-we-dont-screw-that-up-with-h4-elements-either" class="anchor"></div>
+<h3 class="relative group">PyPy 
+    <div id="pypy" class="anchor"></div>
     
     <span
         class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
         <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#lets-make-sure-we-dont-screw-that-up-with-h4-elements-either" aria-label="Anchor">#</a>
+            style="text-decoration-line: none !important;" href="#pypy" aria-label="Anchor">#</a>
     </span>        
     
-</h4>
-<p>Phew, with any luck we have styled the headings above this text and they look pretty good.</p>
-<p>Let&rsquo;s add a closing paragraph here so things end with a decently sized block of text. I can&rsquo;t explain why I want things to end that way but I have to assume it&rsquo;s because I think things will look weird or unbalanced if there is a heading too close to the end of the document.</p>
-<p>What I&rsquo;ve written here is probably long enough, but adding this final sentence can&rsquo;t hurt.</p>
+</h3>
+<p>I also tried running the code with PyPy, a just-in-time compiler for Python, to see if it could offer any performance improvements.</p>
+<p>We went from 700 seconds to 184 seconds, which is a good improvement without changing any code. We will thus stick with that interpreter for the following optimizations.</p>
+
+
+<h3 class="relative group">Optimizations 
+    <div id="optimizations" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#optimizations" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<ul>
+<li><a href="https://github.com/RomainEconomics/1rbc/blob/master/python/v2_pypy_bytes.py"   target="_blank">
+    Reading File Bytes</a>: Instead of reading the file line by line, I read the entire file as bytes.
+<ul>
+<li>60 seconds speedup</li>
+</ul>
+</li>
+<li><a href="https://github.com/RomainEconomics/1rbc/blob/master/python/v3_pypy_temp_parsing.py"   target="_blank">
+    Parsing Temperature as Integer</a>: Parsing the temperature as an integer instead of a float to save processing time.
+<ul>
+<li>Almost 30 seconds gained, from 124 to 96 seconds</li>
+</ul>
+</li>
+<li><a href="https://github.com/RomainEconomics/1rbc/blob/master/python/v5_pypy_mp_v2.py"   target="_blank">
+    Multiprocessing</a>: Since Python&rsquo;s Global Interpreter Lock (GIL) limits the effectiveness of multithreading, I used multiprocessing to parallelize the task.
+<ul>
+<li>62 seconds - from 96 to 34 seconds</li>
+</ul>
+</li>
+</ul>
+<p>Reading the file as bytes and parsing the temperature as an integer were the most significant optimizations before we were able to use multiprocessing.</p>
+<p>However, to read a file and process it using multiple core, we need to first ensures each core sees different chunks.</p>
+<p>For that, I defined this function:</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">find_chunk_boundaries</span><span class="p">(</span><span class="n">filename</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">workers</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]]:</span>
+</span></span><span class="line"><span class="cl">    <span class="n">file_size</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">getsize</span><span class="p">(</span><span class="n">filename</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">chunk_size</span> <span class="o">=</span> <span class="n">file_size</span> <span class="o">//</span> <span class="n">workers</span>
+</span></span><span class="line"><span class="cl">    <span class="n">chunks</span> <span class="o">=</span> <span class="p">[]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">def</span> <span class="nf">find_new_line</span><span class="p">(</span><span class="n">f</span><span class="p">:</span> <span class="n">io</span><span class="o">.</span><span class="n">BufferedReader</span><span class="p">,</span> <span class="n">start</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">        <span class="n">f</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">chunk</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">2048</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="sa">b</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span> <span class="ow">in</span> <span class="n">chunk</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="n">start</span> <span class="o">+</span> <span class="n">chunk</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="sa">b</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2048</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span> <span class="n">f</span><span class="o">.</span><span class="n">tell</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="n">start</span> <span class="o">+=</span> <span class="nb">len</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">filename</span><span class="p">,</span> <span class="s2">&#34;rb&#34;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">start</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">workers</span><span class="p">):</span>
+</span></span><span class="line"><span class="cl">            <span class="n">end</span> <span class="o">=</span> <span class="n">find_new_line</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">start</span> <span class="o">+</span> <span class="n">chunk_size</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">chunks</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">            <span class="n">start</span> <span class="o">=</span> <span class="n">end</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">chunks</span>
+</span></span></code></pre></div><p>This function will return the boundaries of the chunks that each worker will process.
+Moreover, we need to ensure that the end of a chunk fits exactly the end of a line, to avoid splitting a line between two workers.</p>
+<p>Using all the cores on my machine (20) allowed to divide by almost 3 the time needed to process the file.</p>
+<p>Coming from 700 seconds, we are now at 34 seconds, which is a good improvement.</p>
+<p>But we&rsquo;re still far from the performance of Polars or DuckDB.</p>
+
+
+<h2 class="relative group">Rust Strategies 
+    <div id="rust-strategies" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#rust-strategies" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+
+
+<h3 class="relative group">Baseline in Pure Rust 
+    <div id="baseline-in-pure-rust" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#baseline-in-pure-rust" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>I started with a baseline implementation in pure Rust using a <a href="https://github.com/RomainEconomics/1rbc/blob/master/rust/src/bin/v0_buffer_reader.rs"   target="_blank">
+    buffered reader</a>.</p>
+
+
+<h3 class="relative group">Optimizations 
+    <div id="optimizations-1" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#optimizations-1" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<ul>
+<li><a href="https://github.com/RomainEconomics/1rbc/blob/master/rust/src/bin/v1_bytes.rs"   target="_blank">
+    Using Bytes</a>: Reading the file as bytes for faster processing.</li>
+<li><a href="https://github.com/RomainEconomics/1rbc/blob/master/rust/src/bin/v2_faster_hash.rs"   target="_blank">
+    Faster Hash Map</a>: Using a more efficient hash map for storing city temperatures.</li>
+<li><a href="https://github.com/RomainEconomics/1rbc/blob/master/rust/src/bin/v3_fast_float.rs"   target="_blank">
+    Faster Float Parsing</a>: Optimizing the parsing of temperature values.</li>
+<li><a href="https://github.com/RomainEconomics/1rbc/blob/master/rust/src/bin/v4_parse_temp.rs"   target="_blank">
+    Parsing Temperature as Integer</a>: Similar to the Python approach, parsing the temperature as an integer.</li>
+<li><a href="https://github.com/RomainEconomics/1rbc/blob/master/rust/src/bin/v5_mmap.rs"   target="_blank">
+    Memory-Mapped Files (mmap)</a>: Using memory-mapped files for faster file I/O.</li>
+<li><a href="https://github.com/RomainEconomics/1rbc/blob/master/rust/src/bin/v6_multi_threading_v1.rs"   target="_blank">
+    Multithreading</a>: Utilizing Rust&rsquo;s powerful multithreading capabilities with Arc (Atomic Reference Counting) for shared state.</li>
+</ul>
+
+
+<h2 class="relative group">Results 
+    <div id="results" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#results" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Strategy</th>
+<th style="text-align:left">Language</th>
+<th style="text-align:right">Mean</th>
+<th style="text-align:right">StdDev</th>
+<th style="text-align:right">Median</th>
+<th style="text-align:right">Min</th>
+<th style="text-align:right">Max</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">v6_multi_threading_v1</td>
+<td style="text-align:left">Rust</td>
+<td style="text-align:right">4.71</td>
+<td style="text-align:right">0.17</td>
+<td style="text-align:right">4.76</td>
+<td style="text-align:right">4.46</td>
+<td style="text-align:right">4.88</td>
+</tr>
+<tr>
+<td style="text-align:left">baseline_ibis_duckdb</td>
+<td style="text-align:left">Python</td>
+<td style="text-align:right">11.25</td>
+<td style="text-align:right">0.52</td>
+<td style="text-align:right">11.34</td>
+<td style="text-align:right">10.71</td>
+<td style="text-align:right">11.82</td>
+</tr>
+<tr>
+<td style="text-align:left">baseline_polars</td>
+<td style="text-align:left">Python</td>
+<td style="text-align:right">20.18</td>
+<td style="text-align:right">12.76</td>
+<td style="text-align:right">11.81</td>
+<td style="text-align:right">11.63</td>
+<td style="text-align:right">40.37</td>
+</tr>
+<tr>
+<td style="text-align:left">v5_mmap</td>
+<td style="text-align:left">Rust</td>
+<td style="text-align:right">29.85</td>
+<td style="text-align:right">1.12</td>
+<td style="text-align:right">29.34</td>
+<td style="text-align:right">29.27</td>
+<td style="text-align:right">31.84</td>
+</tr>
+<tr>
+<td style="text-align:left">v5_pypy_mp_v2</td>
+<td style="text-align:left">Python</td>
+<td style="text-align:right">34.77</td>
+<td style="text-align:right">9.42</td>
+<td style="text-align:right">32.78</td>
+<td style="text-align:right">24.41</td>
+<td style="text-align:right">46.29</td>
+</tr>
+<tr>
+<td style="text-align:left">v4_parse_temp</td>
+<td style="text-align:left">Rust</td>
+<td style="text-align:right">39.34</td>
+<td style="text-align:right">0.13</td>
+<td style="text-align:right">39.28</td>
+<td style="text-align:right">39.24</td>
+<td style="text-align:right">39.56</td>
+</tr>
+<tr>
+<td style="text-align:left">v3_fast_float</td>
+<td style="text-align:left">Rust</td>
+<td style="text-align:right">41.97</td>
+<td style="text-align:right">0.07</td>
+<td style="text-align:right">41.94</td>
+<td style="text-align:right">41.92</td>
+<td style="text-align:right">42.08</td>
+</tr>
+<tr>
+<td style="text-align:left">v4_pypy_mp</td>
+<td style="text-align:left">Python</td>
+<td style="text-align:right">42.67</td>
+<td style="text-align:right">7.67</td>
+<td style="text-align:right">39.17</td>
+<td style="text-align:right">34.52</td>
+<td style="text-align:right">54.08</td>
+</tr>
+<tr>
+<td style="text-align:left">v2_faster_hash</td>
+<td style="text-align:left">Rust</td>
+<td style="text-align:right">44.32</td>
+<td style="text-align:right">0.15</td>
+<td style="text-align:right">44.28</td>
+<td style="text-align:right">44.19</td>
+<td style="text-align:right">44.5</td>
+</tr>
+<tr>
+<td style="text-align:left">v1_bytes</td>
+<td style="text-align:left">Rust</td>
+<td style="text-align:right">53.73</td>
+<td style="text-align:right">0.78</td>
+<td style="text-align:right">54.14</td>
+<td style="text-align:right">52.4</td>
+<td style="text-align:right">54.3</td>
+</tr>
+<tr>
+<td style="text-align:left">v0_buffer_reader</td>
+<td style="text-align:left">Rust</td>
+<td style="text-align:right">77.43</td>
+<td style="text-align:right">5.76</td>
+<td style="text-align:right">75.23</td>
+<td style="text-align:right">74.19</td>
+<td style="text-align:right">87.68</td>
+</tr>
+<tr>
+<td style="text-align:left">v3_pypy_temp_parsing</td>
+<td style="text-align:left">Python</td>
+<td style="text-align:right">96.24</td>
+<td style="text-align:right">0.55</td>
+<td style="text-align:right">96.32</td>
+<td style="text-align:right">95.52</td>
+<td style="text-align:right">96.81</td>
+</tr>
+<tr>
+<td style="text-align:left">v2_pypy_bytes</td>
+<td style="text-align:left">Python</td>
+<td style="text-align:right">124.39</td>
+<td style="text-align:right">0.78</td>
+<td style="text-align:right">124.15</td>
+<td style="text-align:right">123.7</td>
+<td style="text-align:right">125.73</td>
+</tr>
+<tr>
+<td style="text-align:left">v1_pypy_list</td>
+<td style="text-align:left">Python</td>
+<td style="text-align:right">181.59</td>
+<td style="text-align:right">0.37</td>
+<td style="text-align:right">181.74</td>
+<td style="text-align:right">181.09</td>
+<td style="text-align:right">182</td>
+</tr>
+<tr>
+<td style="text-align:left">v0_builtin_with_pypy</td>
+<td style="text-align:left">Python</td>
+<td style="text-align:right">184.76</td>
+<td style="text-align:right">1.34</td>
+<td style="text-align:right">184.33</td>
+<td style="text-align:right">182.98</td>
+<td style="text-align:right">186.19</td>
+</tr>
+<tr>
+<td style="text-align:left">baseline_pandas</td>
+<td style="text-align:left">Python</td>
+<td style="text-align:right">217.59</td>
+<td style="text-align:right">4.66</td>
+<td style="text-align:right">215.74</td>
+<td style="text-align:right">214.61</td>
+<td style="text-align:right">225.84</td>
+</tr>
+<tr>
+<td style="text-align:left">v0_builtin</td>
+<td style="text-align:left">Python</td>
+<td style="text-align:right">703.82</td>
+<td style="text-align:right">12.6</td>
+<td style="text-align:right">699.51</td>
+<td style="text-align:right">695.57</td>
+<td style="text-align:right">725.97</td>
+</tr>
+</tbody>
+</table>
+
+
+<h2 class="relative group">Analysis 
+    <div id="analysis" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#analysis" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+
+
+<h3 class="relative group">Rust 
+    <div id="rust" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#rust" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>Rust consistently outperformed Python in all benchmarks for single threaded code. The fastest Rust implementation, which used multithreading, completed the task in just 4.71 seconds on average.</p>
+
+
+<h3 class="relative group">Python 
+    <div id="python" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#python" aria-label="Anchor">#</a>
+    </span>        
+    
+</h3>
+<p>Python, while slower than Rust, offers a rich ecosystem of libraries that can call C, C++, or even Rust code, making it easier to write and maintain. The fastest Python implementation using DuckDB completed the task in 11.25 seconds on
+average. PyPy provided some performance improvements, but it was still not as fast as Rust.</p>
+
+
+<h2 class="relative group">Conclusion 
+    <div id="conclusion" class="anchor"></div>
+    
+    <span
+        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
+        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
+            style="text-decoration-line: none !important;" href="#conclusion" aria-label="Anchor">#</a>
+    </span>        
+    
+</h2>
+<p>This exercise was a valuable learning experience. It highlighted the performance differences between Python and Rust and provided insights into various optimization techniques. While Rust is clearly faster, Python&rsquo;s ease of use and extensive library support make it a strong contender for many applications.</p>
+<p>Notably, I learned a lot about using multithreading in Rust (without using Rayon, a common library used for multithreading), memory-mapped files, and other optimization strategies. If performance is critical and you are comfortable with Rust, this seems like a good choice. However, for ease of development and leveraging existing libraries, Python remains a powerful tool.</p>
 
         </div>
         
