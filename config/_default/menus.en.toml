@@ -4,25 +4,27 @@ name = "Posts"
 pageRef = "posts"
 weight = 15
 
-[[main]]
-name = "Projects"
-pageRef = "projects"
-weight = 15
+# TODO: add RAG project
+# [[main]]
+# name = "Projects"
+# pageRef = "projects"
+# weight = 15
 
-[[main]]
-name = "Notes"
-pageRef = "notes"
-weight = 15
+# TODO: Uncomment later when more content is available
+# [[main]]
+# name = "Notes"
+# pageRef = "notes"
+# weight = 15
 
 [[main]]
 name = "About"
 pageRef = "about"
 weight = 15
 
-[[main]]
-name = "Tags"
-pageRef = "tags"
-weight = 15
+# [[main]]
+# name = "Tags"
+# pageRef = "tags"
+# weight = 15
 
 
 #
@@ -54,13 +56,13 @@ pre = "github"
 url = "https://github.com/RomainEconomics"
 weight = 400
 
-
-[[footer]]
-name = "Tags"
-pageRef = "tags"
-weight = 10
-
-[[footer]]
-name = "Authors"
-pageRef = "authors"
-weight = 20
+#
+# [[footer]]
+# name = "Tags"
+# pageRef = "tags"
+# weight = 10
+#
+# [[footer]]
+# name = "Authors"
+# pageRef = "authors"
+# weight = 20

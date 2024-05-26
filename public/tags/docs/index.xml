@@ -7,17 +7,7 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>© 2024 Romain Jouhameau</copyright>
-    <lastBuildDate>Sun, 16 Aug 2020 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/docs/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Installation</title>
-      <link>http://localhost:1313/posts/installation/</link>
-      <pubDate>Sun, 16 Aug 2020 00:00:00 +0000</pubDate>
-      
-      <guid>http://localhost:1313/posts/installation/</guid>
-      <description>Simply follow the standard Hugo Quick Start procedure to get up and running quickly.</description>
-      
-    </item>
-    
+    <lastBuildDate>Tue, 11 Aug 2020 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/docs/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Another Project</title>
       <link>http://localhost:1313/projects/another-project/</link>

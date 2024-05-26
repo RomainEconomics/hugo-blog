@@ -14,7 +14,7 @@
       <pubDate>Tue, 16 Apr 2024 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/posts/1rbc/</guid>
-      <description>1 Billion Rows Challenge # Comparing Python and Rust for Processing Large Datasets # In this post, I will share my experience tackling a challenging task: reading a dataset with 1 billion rows and 2 columns (city, temp) and computing the minimum, maximum, and mean temperaturefor each city.</description>
+      <description>1 Billion Rows Challenge # Comparing Python and Rust for Processing Large Datasets # In this post, I will share my experience tackling the 1 Billion Rows Challenge.</description>
       
     </item>
     
