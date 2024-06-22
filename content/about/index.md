@@ -20,6 +20,7 @@ This exploration has not only broadened my understanding but also shaped my care
 My professional experience includes working with Docker and Kubernetes, focusing on deploying applications efficiently. Recently, I've been delving into the potential of Large Language Models (LLM) for extracting data from raw text documents. This work has been both challenging and rewarding, pushing me to continuously learn and adapt. I enjoy the process of exploring new technologies and ideas, always looking for ways to improve and innovate.
 
 If you would like a newer unredacted version of my resume or have an interesting project or opportunity you would like to share, please don't hesitate to reach out via [email](mailto:jouhameau.romain@gmail.com) or [linkedIn](https://www.linkedin.com/in/romain-jouhameau-87064618b/).
+My resume is also available in [pdf](./Romain_Jouhameau_CV.pdf).
 
 ## Experience
 

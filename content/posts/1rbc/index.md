@@ -20,11 +20,9 @@ Note that all the code and benchmarks are available in the github repo:
 
 To generate the file used for the computation, go the [1BRC repo](https://github.com/gunnarmorling/1brc).
 
-
 ## Benchmarks
 
 As a teaser, here the results of the benchmarks:
-
 
 | Strategy              | Language |   Mean | StdDev | Median |    Min |    Max |
 | :-------------------- | :------- | -----: | -----: | -----: | -----: | -----: |
@@ -149,7 +147,7 @@ We went from 700 seconds to 184 seconds, which is a good improvement without cha
 - [Multiprocessing](https://github.com/RomainEconomics/1rbc/blob/master/python/v5_pypy_mp_v2.py): Since Python's Global Interpreter Lock (GIL) limits the effectiveness of multithreading, I used multiprocessing to parallelize the task.
   - 62 seconds - from 96 to 34 seconds
 
-Reading the file as bytes and parsing the temperature as an integer were the most significant optimizations before we were able to use multiprocessing. 
+Reading the file as bytes and parsing the temperature as an integer were the most significant optimizations before we were able to use multiprocessing.
 
 However, to read a file and process it using multiple core, we need to first ensures each core sees different chunks.
 
@@ -182,7 +180,6 @@ def find_chunk_boundaries(filename: str, workers: int) -> list[tuple[int, int]]:
 
 This function will return the boundaries of the chunks that each worker will process.
 Moreover, we need to ensure that the end of a chunk fits exactly the end of a line, to avoid splitting a line between two workers.
-
 
 Using all the cores on my machine (20) allowed to divide by almost 3 the time needed to process the file.
 
@@ -243,4 +240,3 @@ average. PyPy provided some performance improvements, but it was still not as fa
 This exercise was a valuable learning experience. It highlighted the performance differences between Python and Rust and provided insights into various optimization techniques. While Rust is clearly faster, Python's ease of use and extensive library support make it a strong contender for many applications.
 
 Notably, I learned a lot about using multithreading in Rust (without using Rayon, a common library used for multithreading), memory-mapped files, and other optimization strategies. If performance is critical and you are comfortable with Rust, this seems like a good choice. However, for ease of development and leveraging existing libraries, Python remains a powerful tool.
-
