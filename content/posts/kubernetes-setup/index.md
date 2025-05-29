@@ -12,6 +12,8 @@ showTaxonomies: true
 
 This post covers my go-to setup for working with Kubernetes from the command line. It’s a lightweight stack that helps me manage multiple clusters and namespaces efficiently, and debug faster using CLI tools.
 
+Note that this setup is tailored for Linux and Ubuntu, but the tools can be adapted for other Linux distributions or macOS.
+
 ## Must-Have
 
 ### `kubectl`
