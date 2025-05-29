@@ -10,14 +10,14 @@ showTaxonomies: true
 
 # Building a Lightweight RAG Library with LangChain and Weaviate
 
-As someone who frequently works with Large Language Models (LLMs), I found myself repeatedly writing similar boilerplate code for Retrieval Augmented Generation (RAG) applications. You know the drill: setting up document retrieval, implementing QA chains, validating results, and generating structured outputs. After the nth time writing nearly identical code, I decided to create a [lightweight library](https://github.com/RomainEconomics/rag) to streamline this process.
+As someone who frequently works with Large Language Models (LLMs), I found myself repeatedly writing similar boilerplate code for Retrieval Augmented Generation (RAG) applications: setting up document retrieval, implementing QA chains, validating results, and generating structured outputs. To avoid rewriting nearly identical code, I decided to create a [lightweight library](https://github.com/RomainEconomics/rag) to streamline this process.
 
 ## Why Another RAG Library?
 
 While there are several excellent RAG implementations out there, I wanted something that was:
 
 - Lightweight and focused
-- Built on top of battle-tested libraries (LangChain and Weaviate)
+- Built on top of libraries I frequently use (LangChain and Weaviate)
 - Flexible enough to handle different types of chains and validation strategies
 - Easy to customize for my specific use cases
 
